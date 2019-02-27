@@ -1,0 +1,9 @@
+name: lightbox
+windows:
+  - editor: eval $EDITOR
+  - example: cd example; eval $EDITOR
+  - watchers:
+      layout: even-horizontal
+      panes:
+        - yarn start
+        - cd example; yarn start
