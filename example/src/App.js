@@ -7,6 +7,7 @@ export default class App extends Component {
     return (
       <div>
         <ExampleComponent text='Modern React component module' />
+        <button className="button">Trigger Lightbox</button>
       </div>
     )
   }
