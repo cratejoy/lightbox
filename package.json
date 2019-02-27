@@ -57,5 +57,9 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "no-scroll": "^2.1.1",
+    "react-minimalist-portal": "^2.3.1"
+  }
 }
