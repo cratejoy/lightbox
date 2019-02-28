@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import noScroll from 'no-scroll'
 import LightboxMarkup from './LightboxMarkup'
@@ -14,7 +14,7 @@ class Lightbox extends Component {
     width: typeof window !== 'undefined' ? window.innerWidth : 0,
     height: typeof window !== 'undefined' ? window.innerHeight : 0,
     mouseIdle: false,
-    showPortal: this.props.open
+    showPortal: !!this.props.open
   }
 
   componentDidMount() {
@@ -37,6 +37,12 @@ class Lightbox extends Component {
     if (this.props.open) {
       this.handleClose()
     }
+  }
+
+  triggerOpen = () => {
+    this.setState({
+      showPortal: !this.state.showPortal
+    })
   }
 
   handleOpen = () => {
@@ -104,26 +110,37 @@ class Lightbox extends Component {
   }
 
   render () {
-    const passedProps = {
+    const markupProps = {
       ...this.state,
       transitionDuration: this.props.transitionDuration,
-      transitionStyles: this.props.transitionStyles
+      transitionStyles: this.props.transitionStyles,
+      src: this.props.src
     }
 
+    const childProps = {
+      ...this.state,
+      triggerOpen: this.triggerOpen
+    }
+
+    const { children } = this.props
+
     return (
-      <LightboxMarkup {...passedProps} />
+      <Fragment>
+        <LightboxMarkup {...markupProps} />
+        {children(childProps)}
+      </Fragment>
     )
   }
 
   static propTypes = {
     // Control if Lightbox is open or not
-    open: PropTypes.bool.isRequired,
+    open: PropTypes.bool,
     // An array of image urls
     src: PropTypes.arrayOf(
       PropTypes.string
     ).isRequired,
     // Index of source to display
-    srcIndex: PropTypes.number.isRequired,
+    srcIndex: PropTypes.number,
     // Is closable when user press esc key
     closeOnEsc: PropTypes.bool,
     // Enable left and right arrow navigation
@@ -136,11 +153,13 @@ class Lightbox extends Component {
     // Timeout before hidding the actions buttons when mouse do not move (milliseconds)
     mouseIdleTimeout: PropTypes.number,
     // Function called when the previous image is requested
-    onClickPrev: PropTypes.func.isRequired,
+    onClickPrev: PropTypes.func,
     // Function called when the next image is requested
-    onClickNext: PropTypes.func.isRequired,
+    onClickNext: PropTypes.func,
     // Function called when GooglePhoto is requested to be closed
-    onClose: PropTypes.func.isRequired
+    onClose: PropTypes.func,
+    // HOC Usage
+    children: PropTypes.func.isRequired
   }
 
   static defaultProps = {

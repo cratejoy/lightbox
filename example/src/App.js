@@ -1,14 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-import ExampleComponent from '@cratejoy/lightbox'
+import Lightbox from '@cratejoy/lightbox'
 
-export default class App extends Component {
-  render () {
-    return (
-      <div>
-        <ExampleComponent text='Modern React component module' />
-        <button className="button">Trigger Lightbox</button>
-      </div>
-    )
-  }
-}
+const imgs = [
+  'https://picsum.photos/400/400',
+  'https://picsum.photos/400/400',
+  'https://picsum.photos/400/400',
+  'https://picsum.photos/400/400'
+]
+
+const Example = () => (
+  <Lightbox src={imgs} open>
+    {({ triggerOpen }) => (
+      <button onClick={triggerOpen}>Trigger Lightbox</button>
+    )}
+  </Lightbox>
+);
+
+export default Example;
