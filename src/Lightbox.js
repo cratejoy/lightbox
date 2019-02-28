@@ -14,7 +14,8 @@ class Lightbox extends Component {
     width: typeof window !== 'undefined' ? window.innerWidth : 0,
     height: typeof window !== 'undefined' ? window.innerHeight : 0,
     mouseIdle: false,
-    showPortal: !!this.props.open
+    showPortal: !!this.props.open,
+    index: 0
   }
 
   componentDidMount() {
@@ -90,18 +91,21 @@ class Lightbox extends Component {
   }
 
   handleClickPrev = () => {
-    if (this.props.srcIndex !== 0) {
+    if (this.state.index !== 0) {
+      this.setState({ index: this.state.index - 1 })
       this.props.onClickPrev()
     }
   }
 
   handleClickNext = () => {
-    if (this.props.src[this.props.srcIndex + 1]) {
+    if (this.props.src[this.state.index + 1]) {
+      this.setState({ index: this.state.index + 1 })
       this.props.onClickNext()
     }
   }
 
   handleClickCloseArrow = () => {
+    this.triggerOpen()
     this.props.onClose()
   }
 
@@ -139,8 +143,6 @@ class Lightbox extends Component {
     src: PropTypes.arrayOf(
       PropTypes.string
     ).isRequired,
-    // Index of source to display
-    srcIndex: PropTypes.number,
     // Is closable when user press esc key
     closeOnEsc: PropTypes.bool,
     // Enable left and right arrow navigation
