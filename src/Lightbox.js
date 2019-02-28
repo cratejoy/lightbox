@@ -118,6 +118,7 @@ class Lightbox extends Component {
       ...this.state,
       transitionDuration: this.props.transitionDuration,
       transitionStyles: this.props.transitionStyles,
+      triggerOpen: this.triggerOpen,
       src: this.props.src
     }
 
