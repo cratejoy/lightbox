@@ -11,7 +11,7 @@ export const Overlay = styled.div`
   z-index: ${props => props.zOverride ? props.zOverride : '9'};
 `
 
-export const Column = styled.div`
+export const Column = styled.button`
   position: absolute;
   width: 30%;
   top: 0;
@@ -33,7 +33,7 @@ export const Column = styled.div`
   }
 `
 
-export const Button = styled.button`
+export const Button = styled.div`
   appearance: none;
   border: none;
   border-radius: 0;
@@ -77,4 +77,18 @@ export const ArrowBtn = styled(Button)`
   ${props => props.right && css`
     right: 28px;
   `}
+`
+
+export const Wrapper = styled.div`
+  position: absolute;
+  overflow: hidden;
+  user-select: none;
+`
+
+export const Image = styled.img`
+  position: absolute;
+  transition: opacity 500ms ease, transform 500ms ease;
+  visibility: ${props => props.open ? 'initial' : 'hidden'};
+  opacity: ${props => props.open ? '1' : '0'};
+  transform: translateX(${props => props.open ? '0' : '50px'});
 `

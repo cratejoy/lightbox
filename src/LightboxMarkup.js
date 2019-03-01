@@ -6,7 +6,9 @@ import {
   Overlay,
   Column,
   ArrowBtn,
-  CloseBtn
+  CloseBtn,
+  Wrapper,
+  Image
 } from './styles'
 
 import {
@@ -22,7 +24,8 @@ class LightboxMarkup extends PureComponent {
     const {
       src,
       mouseIdle,
-      triggerOpen
+      triggerOpen,
+      index
     } = this.props
     return (
       <Portal>
@@ -43,11 +46,11 @@ class LightboxMarkup extends PureComponent {
             <CloseArrow />
           </CloseBtn>
 
-          <div>
-            {src.map((img, index) => (
-              <img key={index} src={img} />
+          <Wrapper>
+            {src.map((img, imgIndex) => (
+              <Image key={imgIndex} src={img} open={index === imgIndex} />
             ))}
-          </div>
+          </Wrapper>
         </Overlay>
       </Portal>
     )
@@ -59,7 +62,8 @@ class LightboxMarkup extends PureComponent {
       PropTypes.string
     ).isRequired,
     mouseIdle: PropTypes.bool,
-    triggerOpen: PropTypes.func
+    triggerOpen: PropTypes.func,
+    index: PropTypes.number
   }
 }
 
