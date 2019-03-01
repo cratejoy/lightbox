@@ -9,6 +9,11 @@ export const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   overflow: hidden;
   z-index: ${props => props.zOverride ? props.zOverride : '9'};
+  box-sizing: border-box;
+
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
 `
 
 export const Column = styled.button`
@@ -79,7 +84,17 @@ export const ArrowBtn = styled(Button)`
   `}
 `
 
-export const Wrapper = styled.div`
+export const ImgWrapper = styled.div`
+  position: relative
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+export const Overflower = styled.div`
   position: absolute;
   overflow: hidden;
   user-select: none;
@@ -88,7 +103,7 @@ export const Wrapper = styled.div`
 export const Image = styled.img`
   position: absolute;
   transition: opacity 500ms ease, transform 500ms ease;
-  visibility: ${props => props.open ? 'initial' : 'hidden'};
-  opacity: ${props => props.open ? '1' : '0'};
-  transform: translateX(${props => props.open ? '0' : '50px'});
+  visibility: ${props => props.show ? 'initial' : 'hidden'};
+  opacity: ${props => props.show ? '1' : '0'};
+  transform: translateX(${props => props.show ? '0' : '50px'});
 `

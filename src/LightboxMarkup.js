@@ -7,7 +7,8 @@ import {
   Column,
   ArrowBtn,
   CloseBtn,
-  Wrapper,
+  Overflower,
+  ImgWrapper,
   Image
 } from './styles'
 
@@ -46,11 +47,13 @@ class LightboxMarkup extends PureComponent {
             <CloseArrow />
           </CloseBtn>
 
-          <Wrapper>
-            {src.map((img, imgIndex) => (
-              <Image key={imgIndex} src={img} open={index === imgIndex} />
-            ))}
-          </Wrapper>
+          <ImgWrapper>
+            <Overflower>
+              {src.map((img, imgIndex) => (
+                <Image key={imgIndex} src={img} show={index === imgIndex} />
+              ))}
+            </Overflower>
+          </ImgWrapper>
         </Overlay>
       </Portal>
     )
