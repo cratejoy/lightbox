@@ -3,12 +3,6 @@ import PropTypes from 'prop-types'
 import noScroll from 'no-scroll'
 import Markup from './Markup'
 
-const keycodes = {
-  esc: 27,
-  left: 37,
-  right: 39
-}
-
 class Lightbox extends Component {
   state = {
     showPortal: !!this.props.open,
@@ -77,11 +71,16 @@ class Lightbox extends Component {
   }
 
   handleKeydown = e => {
-    if (e.keyCode === keycodes.left && this.props.keyboardNavigation) {
+    const LEFT = 37
+    const RIGHT = 39
+    const ESC = 27
+    const { keyCode } = e
+
+    if (keyCode === LEFT && this.props.keyboardNavigation) {
       this.handleClickPrev()
-    } else if (e.keyCode === keycodes.right && this.props.keyboardNavigation) {
+    } else if (keyCode === RIGHT && this.props.keyboardNavigation) {
       this.handleClickNext()
-    } else if (e.keyCode === keycodes.esc && this.props.closeOnEsc) {
+    } else if (keyCode === ESC && this.props.closeOnEsc) {
       this.close()
     }
   }
@@ -96,14 +95,6 @@ class Lightbox extends Component {
     if (this.props.src[this.state.index + 1]) {
       this.setState({ index: this.state.index + 1 })
     }
-  }
-
-  handleClickCloseArrow = () => {
-    this.close()
-  }
-
-  handleExited = () => {
-    this.setState({ showPortal: false })
   }
 
   render () {
