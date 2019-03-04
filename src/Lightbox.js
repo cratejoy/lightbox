@@ -17,59 +17,63 @@ class Lightbox extends Component {
 
   componentDidMount() {
     if (this.props.open) {
-      this.handleOpen()
+      this.open()
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (!this.props.open && nextProps.open) {
-      this.handleOpen()
+      this.open()
     }
     if (this.props.open && !nextProps.open) {
-      this.handleClose()
+      this.close()
     }
   }
 
   componentWillUnmount() {
     if (this.props.open) {
-      this.handleClose()
+      this.close()
     }
   }
 
   toggleOpen = () => {
-    this.setState({
-      showPortal: !this.state.showPortal
-    })
+    const { showPortal } = this.state
+    const { open, close } = this
+    if (showPortal) {
+      close()
+    } else {
+      open()
+    }
   }
 
   open = () => {
     this.setState({
       showPortal: true
     })
+    this.listen()
   }
 
   close = () => {
     this.setState({
-      showPortal: true
+      showPortal: false
     })
+    this.unlisten()
   }
 
-  handleOpen = () => {
+  listen = () => {
     document.addEventListener('keydown', this.handleKeydown)
     document
       .querySelector('*')
       .addEventListener('mousemove', this.handleMousemove)
     noScroll.on()
-    this.open()
   }
 
-  handleClose = () => {
+  unlisten = () => {
     document.removeEventListener('keydown', this.handleKeydown)
     document
       .querySelector('*')
       .removeEventListener('mousemove', this.handleMousemove)
     noScroll.off()
-    this.close()
   }
 
   handleKeydown = e => {
@@ -78,7 +82,7 @@ class Lightbox extends Component {
     } else if (e.keyCode === keycodes.right && this.props.keyboardNavigation) {
       this.handleClickNext()
     } else if (e.keyCode === keycodes.esc && this.props.closeOnEsc) {
-      this.handleClose()
+      this.close()
     }
   }
 
@@ -95,7 +99,7 @@ class Lightbox extends Component {
   }
 
   handleClickCloseArrow = () => {
-    this.handleClose()
+    this.close()
   }
 
   handleExited = () => {

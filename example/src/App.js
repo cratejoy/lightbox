@@ -11,8 +11,8 @@ const imgs = [
 
 const Example = () => (
   <Lightbox src={imgs} open>
-    {({ triggerOpen }) => (
-      <button onClick={triggerOpen}>Trigger Lightbox</button>
+    {({ toggleOpen }) => (
+      <button onClick={toggleOpen}>Trigger Lightbox</button>
     )}
   </Lightbox>
 )
