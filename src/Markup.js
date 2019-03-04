@@ -3,9 +3,12 @@ import PropTypes from 'prop-types'
 import Portal from 'react-minimalist-portal'
 
 import {
-  Overlay,
   Image
 } from './styles'
+
+import {
+  Overlay
+} from './components'
 
 class LightboxMarkup extends PureComponent {
   render () {
