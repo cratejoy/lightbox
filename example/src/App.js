@@ -15,6 +15,6 @@ const Example = () => (
       <button onClick={triggerOpen}>Trigger Lightbox</button>
     )}
   </Lightbox>
-);
+)
 
-export default Example;
+export default Example
