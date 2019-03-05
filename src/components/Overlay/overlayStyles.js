@@ -46,9 +46,14 @@ export const CloseBtn = styled.button`
   align-items: center;
   justify-content: center;
   transition: color 0.2s;
+  box-shadow: none;
 
   &:hover, &:active, &:focus {
     color: white;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px #FFFFFF, 0 0 2px 4px rgba(56,191,195,0.4);
   }
 `
 

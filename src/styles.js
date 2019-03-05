@@ -25,9 +25,14 @@ export const Btn = styled.button`
     to ${({left}) => left ? 'right' : 'left'},
     rgba(0, 0, 0, 0.7) -20%, rgba(0, 0, 0, 0.01)
   );
+  box-shadow: none;
 
-  &:hover, &:active, &:focus {
+  &:hover, &:focus {
     opacity: 1;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px #FFFFFF, 0 0 2px 4px rgba(56,191,195,0.4);
   }
 `
 
