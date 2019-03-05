@@ -19,6 +19,15 @@ export const Btn = styled.div`
   align-items: center;
   justify-content: center;
   transition: opacity 0.2s;
+  opacity: 0;
+  background-image: linear-gradient(
+    to ${({left}) => left ? 'right' : 'left'},
+    rgba(0, 0, 0, 0.7) -20%, rgba(0, 0, 0, 0.01)
+  );
+
+  &:hover, &:focus {
+    opacity: 1;
+  }
 `
 
 export const HiddenWrapper = styled.div`
