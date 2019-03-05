@@ -12,7 +12,7 @@ const imgs = [
     thumb: 'https://picsum.photos/100/100'
   },
   {
-    url: 'https://picsum.photos/80/100',
+    url: 'https://picsum.photos/500/500',
     thumb: 'https://picsum.photos/100/100'
   },
   {
