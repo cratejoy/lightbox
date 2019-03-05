@@ -77,21 +77,21 @@ class Lightbox extends Component {
     const { keyCode } = e
 
     if (keyCode === LEFT && this.props.keyboardNavigation) {
-      this.handleClickPrev()
+      this.previous()
     } else if (keyCode === RIGHT && this.props.keyboardNavigation) {
-      this.handleClickNext()
+      this.next()
     } else if (keyCode === ESC && this.props.closeOnEsc) {
       this.close()
     }
   }
 
-  handleClickPrev = () => {
+  previous = () => {
     if (this.state.index !== 0) {
       this.setState({ index: this.state.index - 1 })
     }
   }
 
-  handleClickNext = () => {
+  next = () => {
     if (this.props.src[this.state.index + 1]) {
       this.setState({ index: this.state.index + 1 })
     }
@@ -101,8 +101,8 @@ class Lightbox extends Component {
     const markupProps = {
       ...this.state,
       toggleOpen: this.toggleOpen,
-      next: this.handleClickNext,
-      previous: this.handleClickNext,
+      next: this.next,
+      previous: this.previous,
       src: this.props.src
     }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Portal from 'react-minimalist-portal'
 import { Flipper, Flipped } from 'react-flip-toolkit'
@@ -18,36 +18,45 @@ import {
   CaretRight
 } from './icons'
 
-const LightboxMarkup = ({
-  showPortal, src,
-  toggleOpen, index,
-  next, previous
-}) => {
-  const currentImg = src[index].url
-  return (
-    <Portal>
-      <Flipper flipKey={index}>
-        <Overlay dismiss={toggleOpen}>
-          <Flipped flipId='show'>
-            <ImagesWrapper>
-              <Btn left onClick={previous}>
-                <CaretLeft fill='currentColor' />
-              </Btn>
+class Markup extends Component {
+  render () {
+    const {
+      showPortal, src,
+      toggleOpen, index,
+      next, previous
+    } = this.props
 
-              <Image src={currentImg} />
+    if (!showPortal) return false
+    const currentImg = src[index].url
+    const manyPics = src.length > 1
 
-              <Btn onClick={next}>
-                <CaretRight fill='currentColor' />
-              </Btn>
-            </ImagesWrapper>
-          </Flipped>
-        </Overlay>
-      </Flipper>
-    </Portal>
-  )
-}
+    return (
+      <Portal>
+        <Flipper flipKey={index}>
+          <Overlay dismiss={toggleOpen}>
+            <Flipped flipId='show'>
+              <ImagesWrapper>
+                {manyPics && (
+                  <Btn left onClick={previous}>
+                    <CaretLeft fill='currentColor' />
+                  </Btn>
+                )}
+                <Image src={currentImg} />
 
-LightboxMarkup.propTypes = {
+                {manyPics && (
+                  <Btn onClick={next}>
+                    <CaretRight fill='currentColor' />
+                  </Btn>
+                )}
+              </ImagesWrapper>
+            </Flipped>
+          </Overlay>
+        </Flipper>
+      </Portal>
+    )
+  }
+
+static propTypes = {
   showPortal: PropTypes.bool.isRequired,
   src: PropTypes.arrayOf(
     PropTypes.shape({
@@ -60,5 +69,6 @@ LightboxMarkup.propTypes = {
   previous: PropTypes.func,
   next: PropTypes.func
 }
+}
 
-export default LightboxMarkup
+export default Markup
