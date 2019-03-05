@@ -63,6 +63,7 @@
   ],
   "dependencies": {
     "no-scroll": "^2.1.1",
+    "react-flip-toolkit": "^6.5.7",
     "react-minimalist-portal": "^2.3.1",
     "styled-manila": "^1.0.1"
   }

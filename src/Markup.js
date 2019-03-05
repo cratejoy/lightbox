@@ -1,26 +1,48 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Portal from 'react-minimalist-portal'
-
-import {
-  Image
-} from './styles'
+import { Flipper, Flipped } from 'react-flip-toolkit'
 
 import {
   Overlay
 } from './components'
 
+import {
+  Image,
+  ImagesWrapper,
+  Btn
+} from './styles'
+
+import {
+  CaretLeft,
+  CaretRight
+} from './icons'
+
 const LightboxMarkup = ({
   showPortal, src,
-  toggleOpen, index
+  toggleOpen, index,
+  next, previous
 }) => {
-  if (!showPortal) return false
   const currentImg = src[index].url
   return (
     <Portal>
-      <Overlay dismiss={toggleOpen}>
-        <Image src={currentImg} show />
-      </Overlay>
+      <Flipper flipKey={index}>
+        <Overlay dismiss={toggleOpen}>
+          <Flipped flipId='show'>
+            <ImagesWrapper>
+              <Btn left onClick={previous}>
+                <CaretLeft fill='currentColor' />
+              </Btn>
+
+              <Image src={currentImg} />
+
+              <Btn onClick={next}>
+                <CaretRight fill='currentColor' />
+              </Btn>
+            </ImagesWrapper>
+          </Flipped>
+        </Overlay>
+      </Flipper>
     </Portal>
   )
 }
@@ -28,11 +50,15 @@ const LightboxMarkup = ({
 LightboxMarkup.propTypes = {
   showPortal: PropTypes.bool.isRequired,
   src: PropTypes.arrayOf(
-    PropTypes.string
+    PropTypes.shape({
+      url: PropTypes.string.isRequired,
+      thumb: PropTypes.string
+    })
   ).isRequired,
-  // mouseIdle: PropTypes.bool,
   toggleOpen: PropTypes.func,
-  index: PropTypes.number
+  index: PropTypes.number,
+  previous: PropTypes.func,
+  next: PropTypes.func
 }
 
 export default LightboxMarkup

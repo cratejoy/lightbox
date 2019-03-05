@@ -101,6 +101,8 @@ class Lightbox extends Component {
     const markupProps = {
       ...this.state,
       toggleOpen: this.toggleOpen,
+      next: this.handleClickNext,
+      previous: this.handleClickNext,
       src: this.props.src
     }
 
