@@ -1,7 +1,7 @@
-import ExampleComponent from './'
+import Lightbox from './'
 
-describe('ExampleComponent', () => {
+describe('basic image rendering', () => {
   it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
+    expect(Lightbox).toBeTruthy()
   })
 })
