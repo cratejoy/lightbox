@@ -20,3 +20,10 @@ export const Btn = styled.div`
   justify-content: center;
   transition: opacity 0.2s;
 `
+
+export const HiddenWrapper = styled.div`
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+`
