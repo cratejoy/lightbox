@@ -15,7 +15,7 @@ const LightboxMarkup = ({
   toggleOpen, index
 }) => {
   if (!showPortal) return false
-  const currentImg = src[index]
+  const currentImg = src[index].url
   return (
     <Portal>
       <Overlay dismiss={toggleOpen}>

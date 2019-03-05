@@ -122,7 +122,10 @@ class Lightbox extends Component {
   static propTypes = {
     open: PropTypes.bool,
     src: PropTypes.arrayOf(
-      PropTypes.string
+      PropTypes.shape({
+        url: PropTypes.string.isRequired,
+        thumb: PropTypes.string
+      })
     ).isRequired,
     closeOnEsc: PropTypes.bool,
     keyboardNavigation: PropTypes.bool,
