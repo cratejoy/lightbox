@@ -45,6 +45,15 @@ export const CloseBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: color 0.2s;
+
+  &:hover, &:active, &:focus {
+    color: white;
+  }
+
+  &:focus {
+    outline: auto;
+  }
 `
 
 export const InnerWrapper = styled.div`
