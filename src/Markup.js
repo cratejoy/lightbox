@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Portal from 'react-minimalist-portal'
-import { Flipper, Flipped } from 'react-flip-toolkit'
 import { srcShape, srcArray } from './sharedPropTypes'
 
 import {
@@ -31,34 +30,30 @@ const Markup = ({
   if (!showPortal) return false
   return (
     <Portal>
-      <Flipper flipKey={index}>
-        <Overlay dismiss={toggleOpen}>
-          <Flipped flipId='show'>
-            <ImagesWrapper>
-              {manyPics && (
-                <Btn left onClick={previous}>
-                  <CaretLeft fill='currentColor' />
-                </Btn>
-              )}
-              <Image src={currentImage.url} />
+      <Overlay dismiss={toggleOpen}>
+        <ImagesWrapper>
+          {manyPics && (
+            <Btn left onClick={previous}>
+              <CaretLeft fill='currentColor' />
+            </Btn>
+          )}
+          <Image src={currentImage.url} />
 
-              {nextImages && (
-                <HiddenWrapper>
-                  {nextImages.map((img, i) => (
-                    <Image key={i} src={img.url} />
-                  ))}
-                </HiddenWrapper>
-              )}
+          {nextImages && (
+            <HiddenWrapper>
+              {nextImages.map((img, i) => (
+                <Image key={i} src={img.url} />
+              ))}
+            </HiddenWrapper>
+          )}
 
-              {manyPics && (
-                <Btn onClick={next}>
-                  <CaretRight fill='currentColor' />
-                </Btn>
-              )}
-            </ImagesWrapper>
-          </Flipped>
-        </Overlay>
-      </Flipper>
+          {manyPics && (
+            <Btn onClick={next}>
+              <CaretRight fill='currentColor' />
+            </Btn>
+          )}
+        </ImagesWrapper>
+      </Overlay>
     </Portal>
   )
 }
