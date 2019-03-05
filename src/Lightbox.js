@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import noScroll from 'no-scroll'
 import Markup from './Markup'
+import { ImageLazyLoader } from './components'
 
 class Lightbox extends Component {
   state = {
@@ -119,11 +120,24 @@ class Lightbox extends Component {
       toggleOpen: this.toggleOpen
     }
 
+    const lazyLoaderProps = {
+      index: this.state.index,
+      src: this.props.src
+    }
+
     const { children } = this.props
 
     return (
       <Fragment>
-        <Markup {...markupProps} />
+        <ImageLazyLoader {...lazyLoaderProps}>
+          {({currentImage, nextImages}) => (
+            <Markup
+              {...markupProps}
+              currentImage={currentImage}
+              nextImages={nextImages}
+            />
+          )}
+        </ImageLazyLoader>
         {children(childProps)}
       </Fragment>
     )

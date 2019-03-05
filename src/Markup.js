@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Portal from 'react-minimalist-portal'
 import { Flipper, Flipped } from 'react-flip-toolkit'
@@ -18,61 +18,53 @@ import {
   CaretRight
 } from './icons'
 
-class Markup extends Component {
-  state = {
-    prerenderImgs: []
-  }
+const Markup = ({
+  showPortal, src,
+  toggleOpen, index,
+  next, previous
+}) => {
+  if (!showPortal) return false
+  const currentImg = src[index].url
+  const manyPics = src.length > 1
 
-  render () {
-    const {
-      showPortal, src,
-      toggleOpen, index,
-      next, previous
-    } = this.props
+  return (
+    <Portal>
+      <Flipper flipKey={index}>
+        <Overlay dismiss={toggleOpen}>
+          <Flipped flipId='show'>
+            <ImagesWrapper>
+              {manyPics && (
+                <Btn left onClick={previous}>
+                  <CaretLeft fill='currentColor' />
+                </Btn>
+              )}
+              <Image src={currentImg} />
 
-    if (!showPortal) return false
-    const currentImg = src[index].url
-    const manyPics = src.length > 1
+              {manyPics && (
+                <Btn onClick={next}>
+                  <CaretRight fill='currentColor' />
+                </Btn>
+              )}
+            </ImagesWrapper>
+          </Flipped>
+        </Overlay>
+      </Flipper>
+    </Portal>
+  )
+}
 
-    return (
-      <Portal>
-        <Flipper flipKey={index}>
-          <Overlay dismiss={toggleOpen}>
-            <Flipped flipId='show'>
-              <ImagesWrapper>
-                {manyPics && (
-                  <Btn left onClick={previous}>
-                    <CaretLeft fill='currentColor' />
-                  </Btn>
-                )}
-                <Image src={currentImg} />
-
-                {manyPics && (
-                  <Btn onClick={next}>
-                    <CaretRight fill='currentColor' />
-                  </Btn>
-                )}
-              </ImagesWrapper>
-            </Flipped>
-          </Overlay>
-        </Flipper>
-      </Portal>
-    )
-  }
-
-  static propTypes = {
-    showPortal: PropTypes.bool.isRequired,
-    src: PropTypes.arrayOf(
-      PropTypes.shape({
-        url: PropTypes.string.isRequired,
-        thumb: PropTypes.string
-      })
-    ).isRequired,
-    toggleOpen: PropTypes.func,
-    index: PropTypes.number,
-    previous: PropTypes.func,
-    next: PropTypes.func
-  }
+Markup.propTypes = {
+  showPortal: PropTypes.bool.isRequired,
+  src: PropTypes.arrayOf(
+    PropTypes.shape({
+      url: PropTypes.string.isRequired,
+      thumb: PropTypes.string
+    })
+  ).isRequired,
+  toggleOpen: PropTypes.func,
+  index: PropTypes.number,
+  previous: PropTypes.func,
+  next: PropTypes.func
 }
 
 export default Markup
