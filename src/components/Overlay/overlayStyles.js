@@ -50,10 +50,6 @@ export const CloseBtn = styled.button`
   &:hover, &:active, &:focus {
     color: white;
   }
-
-  &:focus {
-    outline: auto;
-  }
 `
 
 export const InnerWrapper = styled.div`

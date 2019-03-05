@@ -14,7 +14,6 @@ export const Btn = styled.button`
   position: absolute;
   height: 100%;
   width: 40%;
-  outline: none;
   top: 0;
   ${({left}) => left ? 'left' : 'right'}: 0;
   display: flex;
@@ -29,10 +28,6 @@ export const Btn = styled.button`
 
   &:hover, &:active, &:focus {
     opacity: 1;
-  }
-
-  &:focus {
-    outline: auto;
   }
 `
 
