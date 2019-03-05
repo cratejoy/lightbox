@@ -5,8 +5,20 @@ export const ImagesWrapper = styled.div`
   position: relative;
 `
 
+const statusSolver = ({ status }) => {
+  switch (status) {
+    case 'entered':
+    case 'entering':
+      return '1'
+    default:
+      return '0'
+  }
+}
+
 export const Image = styled.img`
   display: block;
+  transition: 250ms;
+  opacity: ${statusSolver};
 `
 
 export const Btn = styled.button`
@@ -27,11 +39,12 @@ export const Btn = styled.button`
   );
   box-shadow: none;
 
-  &:hover, &:focus {
+  &:hover {
     opacity: 1;
   }
 
   &:focus-visible {
+    opacity: 1;
     box-shadow: 0 0 0 2px #FFFFFF, 0 0 2px 4px rgba(56,191,195,0.4);
   }
 `

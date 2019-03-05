@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Portal from 'react-minimalist-portal'
 import { srcShape, srcArray } from './sharedPropTypes'
+import { Transition } from 'react-transition-group'
 
 import {
   Overlay
@@ -25,7 +26,8 @@ const Markup = ({
   next, previous,
   currentImage,
   nextImages,
-  manyPics
+  manyPics,
+  showImage
 }) => {
   if (!showPortal) return false
   return (
@@ -37,7 +39,18 @@ const Markup = ({
               <CaretLeft fill='currentColor' />
             </Btn>
           )}
-          <Image src={currentImage.url} />
+          <Transition
+            in={showImage}
+            timeout={250}
+            appear
+          >
+            {status => (
+              <div>
+                <Image status={status} src={currentImage.url} />
+                <p>{status}</p>
+              </div>
+            )}
+          </Transition>
 
           {nextImages && (
             <HiddenWrapper>
@@ -66,6 +79,7 @@ Markup.propTypes = {
   index: PropTypes.number,
   previous: PropTypes.func,
   manyPics: PropTypes.bool,
+  showImage: PropTypes.bool,
   next: PropTypes.func
 }
 

@@ -8,6 +8,7 @@ import { srcArray } from './sharedPropTypes'
 class Lightbox extends Component {
   state = {
     showPortal: !!this.props.open,
+    showImg: false,
     index: 0
   }
 
@@ -94,7 +95,13 @@ class Lightbox extends Component {
     const realPrev = potentialPrev >= 0
       ? potentialPrev
       : src.length - 1
-    this.setState({ index: realPrev })
+    if (realPrev !== index) {
+      setTimeout(this.startTransition, 250)
+      this.setState({
+        index: realPrev,
+        showImage: false
+      })
+    }
   }
 
   next = () => {
@@ -104,7 +111,19 @@ class Lightbox extends Component {
     const realNext = potentialNext <= src.length - 1
       ? potentialNext
       : 0
-    this.setState({ index: realNext })
+    if (realNext !== index) {
+      setTimeout(this.startTransition, 250)
+      this.setState({
+        index: realNext,
+        showImage: false
+      })
+    }
+  }
+
+  startTransition = () => {
+    this.setState({
+      showImage: true
+    })
   }
 
   render () {
