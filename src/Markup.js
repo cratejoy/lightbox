@@ -19,6 +19,10 @@ import {
 } from './icons'
 
 class Markup extends Component {
+  state = {
+    prerenderImgs: []
+  }
+
   render () {
     const {
       showPortal, src,
@@ -56,19 +60,19 @@ class Markup extends Component {
     )
   }
 
-static propTypes = {
-  showPortal: PropTypes.bool.isRequired,
-  src: PropTypes.arrayOf(
-    PropTypes.shape({
-      url: PropTypes.string.isRequired,
-      thumb: PropTypes.string
-    })
-  ).isRequired,
-  toggleOpen: PropTypes.func,
-  index: PropTypes.number,
-  previous: PropTypes.func,
-  next: PropTypes.func
-}
+  static propTypes = {
+    showPortal: PropTypes.bool.isRequired,
+    src: PropTypes.arrayOf(
+      PropTypes.shape({
+        url: PropTypes.string.isRequired,
+        thumb: PropTypes.string
+      })
+    ).isRequired,
+    toggleOpen: PropTypes.func,
+    index: PropTypes.number,
+    previous: PropTypes.func,
+    next: PropTypes.func
+  }
 }
 
 export default Markup

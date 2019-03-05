@@ -86,15 +86,23 @@ class Lightbox extends Component {
   }
 
   previous = () => {
-    if (this.state.index !== 0) {
-      this.setState({ index: this.state.index - 1 })
-    }
+    const { index } = this.state
+    const { src } = this.props
+    const potentialPrev = index - 1
+    const realPrev = potentialPrev >= 0
+      ? potentialPrev
+      : src.length - 1
+    this.setState({ index: realPrev })
   }
 
   next = () => {
-    if (this.props.src[this.state.index + 1]) {
-      this.setState({ index: this.state.index + 1 })
-    }
+    const { index } = this.state
+    const { src } = this.props
+    const potentialNext = index + 1
+    const realNext = potentialNext <= src.length - 1
+      ? potentialNext
+      : 0
+    this.setState({ index: realNext })
   }
 
   render () {
