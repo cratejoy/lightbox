@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Portal from 'react-minimalist-portal'
 import { Flipper, Flipped } from 'react-flip-toolkit'
+import { srcShape } from './sharedPropTypes'
 
 import {
   Overlay
@@ -19,14 +20,13 @@ import {
 } from './icons'
 
 const Markup = ({
-  showPortal, src,
+  showPortal,
   toggleOpen, index,
-  next, previous
+  next, previous,
+  currentImage,
+  manyPics
 }) => {
   if (!showPortal) return false
-  const currentImg = src[index].url
-  const manyPics = src.length > 1
-
   return (
     <Portal>
       <Flipper flipKey={index}>
@@ -38,7 +38,7 @@ const Markup = ({
                   <CaretLeft fill='currentColor' />
                 </Btn>
               )}
-              <Image src={currentImg} />
+              <Image src={currentImage.url} />
 
               {manyPics && (
                 <Btn onClick={next}>
@@ -55,15 +55,11 @@ const Markup = ({
 
 Markup.propTypes = {
   showPortal: PropTypes.bool.isRequired,
-  src: PropTypes.arrayOf(
-    PropTypes.shape({
-      url: PropTypes.string.isRequired,
-      thumb: PropTypes.string
-    })
-  ).isRequired,
+  currentImage: srcShape,
   toggleOpen: PropTypes.func,
   index: PropTypes.number,
   previous: PropTypes.func,
+  manyPics: PropTypes.bool,
   next: PropTypes.func
 }
 

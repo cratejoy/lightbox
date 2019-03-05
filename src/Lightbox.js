@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import noScroll from 'no-scroll'
 import Markup from './Markup'
 import { ImageLazyLoader } from './components'
+import { srcArray } from './sharedPropTypes'
 
 class Lightbox extends Component {
   state = {
@@ -112,7 +113,7 @@ class Lightbox extends Component {
       toggleOpen: this.toggleOpen,
       next: this.next,
       previous: this.previous,
-      src: this.props.src
+      manyPics: this.props.src.length > 1
     }
 
     const childProps = {
@@ -145,12 +146,7 @@ class Lightbox extends Component {
 
   static propTypes = {
     open: PropTypes.bool,
-    src: PropTypes.arrayOf(
-      PropTypes.shape({
-        url: PropTypes.string.isRequired,
-        thumb: PropTypes.string
-      })
-    ).isRequired,
+    src: srcArray,
     closeOnEsc: PropTypes.bool,
     keyboardNavigation: PropTypes.bool,
     children: PropTypes.func.isRequired

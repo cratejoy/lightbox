@@ -1,9 +1,9 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
+import { srcArray } from '../../sharedPropTypes'
 
 class ImageLazyLoader extends Component {
   state = {
-    currentImg: this.props.src[this.props.index],
     nextImages: []
   }
 
@@ -51,20 +51,16 @@ class ImageLazyLoader extends Component {
   }
 
   render () {
-    const { children } = this.props
+    const { children, src, index } = this.props
     const passedProps = {
-      ...this.state
+      ...this.state,
+      currentImage: src[index]
     }
     return children(passedProps)
   }
 
   static propTypes = {
-    src: PropTypes.arrayOf(
-      PropTypes.shape({
-        url: PropTypes.string.isRequired,
-        thumb: PropTypes.string
-      })
-    ).isRequired,
+    src: srcArray,
     index: PropTypes.number.isRequired,
     children: PropTypes.func.isRequired
   }
