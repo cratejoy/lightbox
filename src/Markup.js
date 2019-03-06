@@ -2,17 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Portal from 'react-minimalist-portal'
 import { srcShape, srcArray } from './sharedPropTypes'
-import { Transition } from 'react-transition-group'
 
 import {
-  Overlay
+  Overlay,
+  Images
 } from './components'
 
 import {
-  Image,
   ImagesWrapper,
-  Btn,
-  HiddenWrapper
+  Btn
 } from './styles'
 
 import {
@@ -25,9 +23,8 @@ const Markup = ({
   toggleOpen, index,
   next, previous,
   currentImage,
-  nextImages,
-  manyPics,
-  showImage
+  images,
+  manyPics
 }) => {
   if (!showPortal) return false
   return (
@@ -39,27 +36,7 @@ const Markup = ({
               <CaretLeft fill='currentColor' />
             </Btn>
           )}
-          <Transition
-            in={showImage}
-            timeout={250}
-            appear
-          >
-            {status => (
-              <div>
-                <Image status={status} src={currentImage.url} />
-                <p>{status}</p>
-              </div>
-            )}
-          </Transition>
-
-          {nextImages && (
-            <HiddenWrapper>
-              {nextImages.map((img, i) => (
-                <Image key={i} src={img.url} />
-              ))}
-            </HiddenWrapper>
-          )}
-
+          <Images currentImage={currentImage} images={images} />
           {manyPics && (
             <Btn onClick={next}>
               <CaretRight fill='currentColor' />
@@ -74,12 +51,11 @@ const Markup = ({
 Markup.propTypes = {
   showPortal: PropTypes.bool.isRequired,
   currentImage: srcShape,
-  nextImages: srcArray,
+  images: srcArray,
   toggleOpen: PropTypes.func,
   index: PropTypes.number,
   previous: PropTypes.func,
   manyPics: PropTypes.bool,
-  showImage: PropTypes.bool,
   next: PropTypes.func
 }
 

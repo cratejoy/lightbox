@@ -4,7 +4,7 @@ import { srcArray } from '../../sharedPropTypes'
 
 class ImageLazyLoader extends Component {
   state = {
-    nextImages: []
+    images: []
   }
 
   getNextImg = () => {
@@ -13,50 +13,63 @@ class ImageLazyLoader extends Component {
     const realNext = potentialNext <= src.length - 1
       ? potentialNext
       : 0
-    return src[realNext]
+    const nextImg = src[realNext]
+    nextImg.currentImage = false
+    return nextImg
   }
 
   getPrevImg = () => {
-    const { index } = this.state
-    const { src } = this.props
+    const { src, index } = this.props
     const potentialPrev = index - 1
     const realPrev = potentialPrev >= 0
       ? potentialPrev
       : src.length - 1
-    return src[realPrev]
+    const prevImg = src[realPrev]
+    prevImg.currentImage = false
+    return prevImg
   }
 
-  preloadImages = () => {
-    const { getNextImg, getPrevImg } = this
+  getCurrentImage = () => {
+    const { src, index } = this.props
+    const currentImage = src[index]
+    currentImage.currentImage = true
+    return currentImage
+  }
+
+  fetchImages = () => {
+    const {
+      getNextImg,
+      getPrevImg,
+      getCurrentImage
+    } = this
+
     const images = [
-      getNextImg(),
-      getPrevImg()
+      getPrevImg(),
+      getCurrentImage(),
+      getNextImg()
     ]
 
-    this.setState({
-      nextImages: images
-    })
+    this.setState({ images })
   }
 
   componentDidMount() {
-    this.preloadImages()
+    this.fetchImages()
   }
 
   componentDidUpdate(prevProps) {
     const prevIndex = prevProps.index
     const { index } = this.props
     if (prevIndex !== index) {
-      this.preloadImages()
+      this.fetchImages()
     }
   }
 
   render () {
     const { children, src, index } = this.props
-    const passedProps = {
-      ...this.state,
-      currentImage: src[index]
-    }
-    return children(passedProps)
+    const { images } = this.state
+    return images.length
+      ? children({ images, currentImage: null })
+      : children({ images, currentImage: src[index] })
   }
 
   static propTypes = {

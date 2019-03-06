@@ -8,7 +8,6 @@ import { srcArray } from './sharedPropTypes'
 class Lightbox extends Component {
   state = {
     showPortal: !!this.props.open,
-    showImg: false,
     index: 0
   }
 
@@ -96,10 +95,8 @@ class Lightbox extends Component {
       ? potentialPrev
       : src.length - 1
     if (realPrev !== index) {
-      setTimeout(this.startTransition, 250)
       this.setState({
-        index: realPrev,
-        showImage: false
+        index: realPrev
       })
     }
   }
@@ -112,18 +109,10 @@ class Lightbox extends Component {
       ? potentialNext
       : 0
     if (realNext !== index) {
-      setTimeout(this.startTransition, 250)
       this.setState({
-        index: realNext,
-        showImage: false
+        index: realNext
       })
     }
-  }
-
-  startTransition = () => {
-    this.setState({
-      showImage: true
-    })
   }
 
   render () {
@@ -150,11 +139,11 @@ class Lightbox extends Component {
     return (
       <Fragment>
         <ImageLazyLoader {...lazyLoaderProps}>
-          {({currentImage, nextImages}) => (
+          {({currentImage, images}) => (
             <Markup
               {...markupProps}
               currentImage={currentImage}
-              nextImages={nextImages}
+              images={images}
             />
           )}
         </ImageLazyLoader>
