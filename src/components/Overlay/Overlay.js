@@ -5,6 +5,7 @@ import {
   Wrapper,
   CloseBtn,
   Background,
+  OuterWrapper,
   InnerWrapper
 } from './overlayStyles'
 
@@ -14,6 +15,12 @@ import {
 
 const Overlay = ({ dismiss, children, noCloseBtn }) => (
   <Wrapper>
+    <OuterWrapper>
+      <InnerWrapper>
+        {children}
+      </InnerWrapper>
+    </OuterWrapper>
+
     <Background onClick={dismiss}>
       {!noCloseBtn && (
         <CloseBtn>
@@ -21,10 +28,6 @@ const Overlay = ({ dismiss, children, noCloseBtn }) => (
         </CloseBtn>
       )}
     </Background>
-
-    <InnerWrapper>
-      {children}
-    </InnerWrapper>
   </Wrapper>
 )
 
