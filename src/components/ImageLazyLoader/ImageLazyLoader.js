@@ -14,7 +14,6 @@ class ImageLazyLoader extends Component {
       ? potentialNext
       : 0
     const nextImg = src[realNext]
-    nextImg.currentImage = false
     return nextImg
   }
 
@@ -25,27 +24,17 @@ class ImageLazyLoader extends Component {
       ? potentialPrev
       : src.length - 1
     const prevImg = src[realPrev]
-    prevImg.currentImage = false
     return prevImg
-  }
-
-  getCurrentImage = () => {
-    const { src, index } = this.props
-    const currentImage = src[index]
-    currentImage.currentImage = true
-    return currentImage
   }
 
   fetchImages = () => {
     const {
       getNextImg,
-      getPrevImg,
-      getCurrentImage
+      getPrevImg
     } = this
 
     const images = [
       getPrevImg(),
-      getCurrentImage(),
       getNextImg()
     ]
 
@@ -67,9 +56,10 @@ class ImageLazyLoader extends Component {
   render () {
     const { children, src, index } = this.props
     const { images } = this.state
-    return images.length
-      ? children({ images, currentImage: null })
-      : children({ images, currentImage: src[index] })
+    const passedProps = {
+      images, currentImage: src[index]
+    }
+    return children(passedProps)
   }
 
   static propTypes = {
