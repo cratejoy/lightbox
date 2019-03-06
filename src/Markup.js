@@ -20,6 +20,7 @@ import {
 
 const Markup = ({
   showPortal,
+  showImage,
   toggleOpen, index,
   next, previous,
   currentImage,
@@ -36,7 +37,7 @@ const Markup = ({
               <CaretLeft fill='currentColor' />
             </Btn>
           )}
-          <Images currentImage={currentImage} images={images} />
+          <Images showImage={showImage} currentImage={currentImage} images={images} />
           {manyPics && (
             <Btn onClick={next}>
               <CaretRight fill='currentColor' />
@@ -50,6 +51,7 @@ const Markup = ({
 
 Markup.propTypes = {
   showPortal: PropTypes.bool.isRequired,
+  showImage: PropTypes.bool,
   currentImage: srcShape,
   images: srcArray,
   toggleOpen: PropTypes.func,

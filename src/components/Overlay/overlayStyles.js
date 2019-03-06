@@ -51,10 +51,6 @@ export const CloseBtn = styled.button`
   &:hover, &:active, &:focus {
     color: white;
   }
-
-  &:focus-visible {
-    box-shadow: 0 0 0 2px #FFFFFF, 0 0 2px 4px rgba(56,191,195,0.4);
-  }
 `
 
 export const InnerWrapper = styled.div`

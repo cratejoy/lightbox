@@ -1,24 +1,18 @@
 import styled, { css } from 'styled-components'
 
+const isIn = status => status === 'entering' || status === 'exiting'
+
 export const Image = styled.img`
   display: block;
+  transition: opacity 500ms;
 
-  ${({status}) => status === 'entering' && css`
+  ${({status}) => isIn(status) && css`
     opacity: 0.01;
+    transition: opacity 200ms;
   `}
 
-  ${({status}) => status === 'entered' && css`
+  ${({status}) => !isIn(status) && css`
     opacity: 1;
-    transition: opacity 500ms ease-in;
-  `}
-
-  ${({status}) => status === 'exiting' && css`
-    opacity: 1;
-    transition: opacity 400ms ease-in;
-  `}
-
-  ${({status}) => status === 'exited' && css`
-    opacity: 0.01;
   `}
 `
 

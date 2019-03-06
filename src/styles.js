@@ -26,9 +26,4 @@ export const Btn = styled.button`
   &:hover {
     opacity: 1;
   }
-
-  &:focus-visible {
-    opacity: 1;
-    box-shadow: 0 0 0 2px #FFFFFF, 0 0 2px 4px rgba(56,191,195,0.4);
-  }
 `

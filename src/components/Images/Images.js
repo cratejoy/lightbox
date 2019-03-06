@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
 import { srcShape, srcArray } from '../../sharedPropTypes'
 import { Transition } from 'react-transition-group'
 import {
@@ -6,13 +7,13 @@ import {
   HiddenWrapper
 } from './imagesStyles'
 
-const Images = ({ currentImage, images }) => (
+const Images = ({ currentImage, images, showImage }) => (
   <Fragment>
-    <Transition in timeout={500} appear>
+    <Transition in={showImage} timeout={500}>
       {status => (
         <Fragment>
           <Image src={currentImage.url} status={status} />
-          <p style={{ textAlign: 'center' }}>{status}</p>
+          <p style={{ textAlign: 'center' }}>{currentImage.url} - {status}</p>
         </Fragment>
       )}
     </Transition>
@@ -26,6 +27,7 @@ const Images = ({ currentImage, images }) => (
 
 Images.propTypes = {
   currentImage: srcShape,
+  showImage: PropTypes.bool,
   images: srcArray
 }
 
