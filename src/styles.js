@@ -3,6 +3,7 @@ import { resetBtn } from 'styled-manila'
 
 export const ImagesWrapper = styled.div`
   position: relative;
+  height: 100%;
 `
 
 export const Btn = styled.button`

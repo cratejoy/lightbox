@@ -4,7 +4,7 @@ import Lightbox from '@cratejoy/lightbox'
 
 const imgs = [
   {
-    url: 'https://picsum.photos/400/400?random',
+    url: 'https://picsum.photos/1200/1200?random',
     thumb: 'https://picsum.photos/100/100'
   },
   {

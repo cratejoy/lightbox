@@ -7,20 +7,30 @@ export const Wrapper = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   z-index: ${props => props.zOverride ? props.zOverride : '99999'};
   color: #fff;
   display: flex;
-  align-items: center;
   justify-content: center;
-  overflow-y: auto;
-  padding: 20px;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 40px;
   box-sizing: border-box;
 
   *, *::before, *::after {
     box-sizing: inherit;
   }
+`
+
+export const OuterWrapper = styled.div`
+  z-index: 2;
+  overflow-y: auto;
+`
+
+export const InnerWrapper = styled.div`
+  height: 100%;
 `
 
 export const Background = styled.div`
@@ -51,12 +61,4 @@ export const CloseBtn = styled.button`
   &:hover, &:active, &:focus {
     color: white;
   }
-`
-
-export const InnerWrapper = styled.div`
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
 `
