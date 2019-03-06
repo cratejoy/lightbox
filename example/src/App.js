@@ -8,7 +8,7 @@ const imgs = [
     thumb: 'https://picsum.photos/100/100'
   },
   {
-    url: 'https://picsum.photos/500/700?random',
+    url: 'https://picsum.photos/4000/2800?random',
     thumb: 'https://picsum.photos/100/100'
   },
   {
