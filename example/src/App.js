@@ -22,14 +22,12 @@ const imgs = [
 ]
 
 const Example = () => (
-  <Lightbox src={imgs}>
-    {({ openByIndex }) => (
+  <Lightbox src={imgs} open>
+    {({ toggleOpen, openByIndex }) => (
       <div>
-        {imgs.map((i, k) => (
-          <button onClick={openByIndex(k)} key={k}>
-            <img src={i.thumb} />
-          </button>
-        ))}
+        <button onClick={toggleOpen}>Trigger Lightbox</button>
+        <button onClick={openByIndex(2)}>Open the 3rd img</button>
+        <button onClick={openByIndex(0)}>Open the first img</button>
       </div>
     )}
   </Lightbox>
