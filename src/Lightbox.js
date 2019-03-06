@@ -42,6 +42,11 @@ class Lightbox extends Component {
     }
   }
 
+  openByIndex = index => () => {
+    this.setState({ index })
+    this.open()
+  }
+
   open = () => {
     this.setState({
       showPortal: true
@@ -126,7 +131,8 @@ class Lightbox extends Component {
 
     const childProps = {
       ...this.state,
-      toggleOpen: this.toggleOpen
+      toggleOpen: this.toggleOpen,
+      openByIndex: this.openByIndex
     }
 
     const lazyLoaderProps = {
