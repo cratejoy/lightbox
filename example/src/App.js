@@ -23,8 +23,12 @@ const imgs = [
 
 const Example = () => (
   <Lightbox src={imgs} open>
-    {({ toggleOpen }) => (
-      <button onClick={toggleOpen}>Trigger Lightbox</button>
+    {({ toggleOpen, openByIndex }) => (
+      <div>
+        <button onClick={toggleOpen}>Trigger Lightbox</button>
+        <button onClick={openByIndex(2)}>Open the 3rd img</button>
+        <button onClick={openByIndex(0)}>Open the first img</button>
+      </div>
     )}
   </Lightbox>
 )
