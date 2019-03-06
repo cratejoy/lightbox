@@ -1,19 +1,25 @@
-import styled from 'styled-components'
-
-const statusSolver = ({ status }) => {
-  switch (status) {
-    case 'entered':
-    case 'entering':
-      return '1'
-    default:
-      return '0'
-  }
-}
+import styled, { css } from 'styled-components'
 
 export const Image = styled.img`
   display: block;
-  transition: 250ms;
-  opacity: ${statusSolver};
+
+  ${({status}) => status === 'entering' && css`
+    opacity: 0.01;
+  `}
+
+  ${({status}) => status === 'entered' && css`
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  `}
+
+  ${({status}) => status === 'exiting' && css`
+    opacity: 1;
+    transition: opacity 400ms ease-in;
+  `}
+
+  ${({status}) => status === 'exited' && css`
+    opacity: 0.01;
+  `}
 `
 
 export const HiddenWrapper = styled.div`
