@@ -34,13 +34,13 @@ const Markup = ({
         <ImagesWrapper>
           {manyPics && (
             <Btn left onClick={previous}>
-              <CaretLeft fill='currentColor' />
+              <CaretLeft />
             </Btn>
           )}
           <Images showImage={showImage} currentImage={currentImage} images={images} />
           {manyPics && (
             <Btn onClick={next}>
-              <CaretRight fill='currentColor' />
+              <CaretRight />
             </Btn>
           )}
         </ImagesWrapper>
