@@ -6,12 +6,9 @@ import {
   CloseBtn,
   Background,
   OuterWrapper,
-  InnerWrapper
+  InnerWrapper,
+  StyledClose
 } from './overlayStyles'
-
-import {
-  Close
-} from '../../icons'
 
 const Overlay = ({ dismiss, children, noCloseBtn }) => (
   <Wrapper>
@@ -24,7 +21,7 @@ const Overlay = ({ dismiss, children, noCloseBtn }) => (
     <Background onClick={dismiss}>
       {!noCloseBtn && (
         <CloseBtn>
-          <Close fill='currentColor' />
+          <StyledClose />
         </CloseBtn>
       )}
     </Background>

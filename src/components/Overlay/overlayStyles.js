@@ -1,14 +1,18 @@
 import styled from 'styled-components'
 import { resetBtn } from 'styled-manila'
 
+import {
+  Close
+} from '../../icons'
+
 export const Wrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: ${props => props.zOverride ? props.zOverride : '99999'};
   color: #fff;
   display: flex;
@@ -16,7 +20,7 @@ export const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   overflow: hidden;
-  padding: 40px;
+  padding: 44px;
   box-sizing: border-box;
 
   *, *::before, *::after {
@@ -40,25 +44,29 @@ export const Background = styled.div`
   height: 100%;
   top: 0;
   left: 0;
+  z-index: -1;
 `
 
 export const CloseBtn = styled.button`
   ${resetBtn};
   color: rgb(210, 210, 210);
   background-color: rgb(22, 22, 23);
-  height: 40px;
-  width: 50px;
+  height: 44px;
+  width: 44px;
   position: absolute;
   top: 0;
   left: 0;
   text-align: center;
   display: flex;
-  align-items: center;
-  justify-content: center;
   transition: color 0.2s;
   box-shadow: none;
 
   &:hover, &:active, &:focus {
     color: white;
   }
+`
+
+export const StyledClose = styled(Close)`
+  fill: currentColor;
+  margin: auto;
 `
