@@ -13,10 +13,7 @@ import {
   Btn
 } from './styles'
 
-import {
-  CaretLeft,
-  CaretRight
-} from './icons'
+import { CaretLeft } from './icons'
 
 const Markup = ({
   showPortal,
@@ -40,7 +37,7 @@ const Markup = ({
           <Images showImage={showImage} currentImage={currentImage} images={images} />
           {manyPics && (
             <Btn onClick={next}>
-              <CaretRight />
+              <CaretLeft rotated />
             </Btn>
           )}
         </ImagesWrapper>
