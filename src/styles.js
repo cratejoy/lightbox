@@ -16,13 +16,13 @@ export const Btn = styled.button`
   display: flex;
   transition: opacity 0.2s;
   box-shadow: none;
-  background-image: linear-gradient(
-    to ${({left}) => left ? 'right' : 'left'},
-    rgba(0, 0, 0, 0.7) -20%, rgba(0, 0, 0, 0.01)
-  );
 
   @media (min-width: 1024px) {
     opacity: 0;
+    background-image: linear-gradient(
+      to ${({left}) => left ? 'right' : 'left'},
+      rgba(0, 0, 0, 0.7) -20%, rgba(0, 0, 0, 0.01)
+    );
   }
 
   &:hover {
