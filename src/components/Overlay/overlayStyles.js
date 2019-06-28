@@ -35,6 +35,8 @@ export const OuterWrapper = styled.div`
 
 export const InnerWrapper = styled.div`
   height: 100%;
+  max-width: ${({maxWidth}) => maxWidth || '800px'};
+  margin: 0 auto;
 `
 
 export const Background = styled.div`

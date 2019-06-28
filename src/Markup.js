@@ -20,12 +20,13 @@ const Markup = ({
   next, previous,
   currentImage,
   images,
-  manyPics
+  manyPics,
+  maxWidth,
 }) => {
   if (!showPortal) return false
   return (
     <Portal>
-      <Overlay dismiss={toggleOpen}>
+      <Overlay dismiss={toggleOpen} maxWidth={maxWidth}>
         <ImagesWrapper>
           {manyPics && (
             <Btn left onClick={previous}>
@@ -60,6 +61,7 @@ Markup.propTypes = {
   previous: PropTypes.func,
   manyPics: PropTypes.bool,
   next: PropTypes.func
+  maxWidth: PropTypes.number,
 }
 
 export default Markup
