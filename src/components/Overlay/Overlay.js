@@ -10,10 +10,10 @@ import {
   StyledClose
 } from './overlayStyles'
 
-const Overlay = ({ dismiss, children, noCloseBtn }) => (
+const Overlay = ({ dismiss, children, noCloseBtn, maxWidth }) => (
   <Wrapper>
     <OuterWrapper>
-      <InnerWrapper>
+      <InnerWrapper maxWidth={maxWidth}>
         {children}
       </InnerWrapper>
     </OuterWrapper>
@@ -31,7 +31,8 @@ const Overlay = ({ dismiss, children, noCloseBtn }) => (
 Overlay.propTypes = {
   dismiss: PropTypes.func,
   children: PropTypes.node.isRequired,
-  noCloseBtn: PropTypes.bool
+  noCloseBtn: PropTypes.bool,
+  maxWidth: PropTypes.number,
 }
 
 export default Overlay

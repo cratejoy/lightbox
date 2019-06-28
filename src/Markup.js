@@ -3,42 +3,48 @@ import PropTypes from 'prop-types'
 import Portal from 'react-minimalist-portal'
 import { srcShape, srcArray } from './sharedPropTypes'
 
-import {
-  Overlay,
-  Images
-} from './components'
+import { Overlay } from './components'
 
 import {
   ImagesWrapper,
-  Btn
+  Btn,
+  Image,
+  PreloadWrapper
 } from './styles'
 
 import { CaretLeft } from './icons'
 
 const Markup = ({
   showPortal,
-  showImage,
   toggleOpen, index,
   next, previous,
   currentImage,
   images,
-  manyPics
+  manyPics,
+  maxWidth,
 }) => {
   if (!showPortal) return false
   return (
     <Portal>
-      <Overlay dismiss={toggleOpen}>
+      <Overlay dismiss={toggleOpen} maxWidth={maxWidth}>
         <ImagesWrapper>
           {manyPics && (
             <Btn left onClick={previous}>
               <CaretLeft />
             </Btn>
           )}
-          <Images showImage={showImage} currentImage={currentImage} images={images} />
+          <Image src={currentImage.url} />
           {manyPics && (
             <Btn onClick={next}>
               <CaretLeft rotated />
             </Btn>
+          )}
+          {images && (
+            <PreloadWrapper>
+              {images.map((i, k) => (
+                <Image key={k} src={i.url} />
+              ))}
+            </PreloadWrapper>
           )}
         </ImagesWrapper>
       </Overlay>
@@ -48,7 +54,6 @@ const Markup = ({
 
 Markup.propTypes = {
   showPortal: PropTypes.bool.isRequired,
-  showImage: PropTypes.bool,
   currentImage: srcShape,
   images: srcArray,
   toggleOpen: PropTypes.func,
@@ -56,6 +61,7 @@ Markup.propTypes = {
   previous: PropTypes.func,
   manyPics: PropTypes.bool,
   next: PropTypes.func
+  maxWidth: PropTypes.number,
 }
 
 export default Markup

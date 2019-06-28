@@ -4,6 +4,7 @@ import { resetBtn } from 'styled-manila'
 export const ImagesWrapper = styled.div`
   position: relative;
   height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 `
 
 export const Btn = styled.button`
@@ -33,4 +34,18 @@ export const Btn = styled.button`
     fill: currentColor;
     margin: auto;
   }
+`
+
+export const Image = styled.img`
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 100%;
+`
+
+export const PreloadWrapper = styled.div`
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 `

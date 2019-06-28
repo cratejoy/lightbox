@@ -126,7 +126,8 @@ class Lightbox extends Component {
       toggleOpen: this.toggleOpen,
       next: this.next,
       previous: this.previous,
-      manyPics: this.props.src.length > 1
+      manyPics: this.props.src.length > 1,
+      maxWidth: this.props.maxWidth,
     }
 
     const childProps = {
@@ -163,7 +164,8 @@ class Lightbox extends Component {
     src: srcArray,
     closeOnEsc: PropTypes.bool,
     keyboardNavigation: PropTypes.bool,
-    children: PropTypes.func.isRequired
+    children: PropTypes.func.isRequired,
+    maxWidth: PropTypes.number,
   }
 
   static defaultProps = {
