@@ -60,7 +60,7 @@ Markup.propTypes = {
   index: PropTypes.number,
   previous: PropTypes.func,
   manyPics: PropTypes.bool,
-  next: PropTypes.func
+  next: PropTypes.func,
   maxWidth: PropTypes.number,
 }
 
