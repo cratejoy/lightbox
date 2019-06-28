@@ -1,6 +1,6 @@
 {
   "name": "@cratejoy/lightbox",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "styled-components friendly lightbox with portals",
   "author": "shelldandy",
   "license": "MIT",
