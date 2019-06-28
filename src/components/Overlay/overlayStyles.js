@@ -31,6 +31,7 @@ export const Wrapper = styled.div`
 export const OuterWrapper = styled.div`
   z-index: 2;
   overflow-y: auto;
+  flex: 1;
 `
 
 export const InnerWrapper = styled.div`

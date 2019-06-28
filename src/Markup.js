@@ -3,21 +3,19 @@ import PropTypes from 'prop-types'
 import Portal from 'react-minimalist-portal'
 import { srcShape, srcArray } from './sharedPropTypes'
 
-import {
-  Overlay,
-  Images
-} from './components'
+import { Overlay } from './components'
 
 import {
   ImagesWrapper,
-  Btn
+  Btn,
+  Image,
+  PreloadWrapper
 } from './styles'
 
 import { CaretLeft } from './icons'
 
 const Markup = ({
   showPortal,
-  showImage,
   toggleOpen, index,
   next, previous,
   currentImage,
@@ -34,11 +32,18 @@ const Markup = ({
               <CaretLeft />
             </Btn>
           )}
-          <Images showImage={showImage} currentImage={currentImage} images={images} />
+          <Image src={currentImage.url} />
           {manyPics && (
             <Btn onClick={next}>
               <CaretLeft rotated />
             </Btn>
+          )}
+          {images && (
+            <PreloadWrapper>
+              {images.map((i, k) => (
+                <Image key={k} src={i.url} />
+              ))}
+            </PreloadWrapper>
           )}
         </ImagesWrapper>
       </Overlay>
@@ -48,7 +53,6 @@ const Markup = ({
 
 Markup.propTypes = {
   showPortal: PropTypes.bool.isRequired,
-  showImage: PropTypes.bool,
   currentImage: srcShape,
   images: srcArray,
   toggleOpen: PropTypes.func,
